@@ -29,9 +29,7 @@ body {
     animation: fadeIn 1.5s ease;
 }
 
-h1 {
-    font-size: 1.7em;
-}
+h1 { font-size: 1.7em; }
 
 .heart {
     font-size: 4em;
@@ -54,12 +52,6 @@ button {
     cursor: pointer;
     margin: 10px 0;
     width: 100%;
-    transition: transform 0.2s, background 0.3s;
-}
-
-button:hover {
-    transform: scale(1.05);
-    background: #ffe5e8;
 }
 
 .gallery {
@@ -70,11 +62,10 @@ button:hover {
     gap: 12px;
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition: 0.6s;
 }
 
 .gallery.show {
-    display: grid;
     opacity: 1;
     transform: translateY(0);
 }
@@ -82,13 +73,45 @@ button:hover {
 .gallery img {
     width: 100%;
     border-radius: 15px;
-    transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 .gallery img:hover {
     transform: scale(1.05);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 999;
+    padding: 20px;
+}
+
+.modal img {
+    max-width: 90%;
+    max-height: 70%;
+    border-radius: 20px;
+}
+
+.modal p {
+    margin-top: 15px;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 2em;
+    cursor: pointer;
 }
 
 iframe {
@@ -98,9 +121,7 @@ iframe {
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); }
     50% { transform: scale(1.15); }
-    100% { transform: scale(1); }
 }
 
 @keyframes fadeIn {
@@ -118,49 +139,70 @@ iframe {
 
     <p>
         Eu fiz esse site pensando em você,
-        em cada detalhe, mesmo sem saber tudo.
-        Porque quando é pra você,
-        eu me dedico cada dia mais.
+        em cada detalhe, porque quando é pra você,
+        eu me dedico de verdade.
     </p>
 
     <button onclick="mostrarFotos()">Ver você 💖</button>
     <button onclick="tocarMusica()">Aperta aqui com carinho 🎶</button>
 
     <div class="gallery" id="galeria">
-        <img src="./fotos/foto1.jpg.jpeg">
-<img src="./fotos/foto2.jpg.jpeg">
-<img src="./fotos/foto3.jpg.jpeg">
-<img src="./fotos/foto4.jpg.jpeg">
-<img src="./fotos/foto5.jpg.jpeg">
-<img src="./fotos/foto6.jpg.jpeg">
-<img src="./fotos/foto7.jpg.jpeg">
-<img src="./fotos/foto8.jpg.jpeg">
-<img src="./fotos/foto9.jpg.jpeg">
-
+        <img src="./fotos/foto1.jpg.jpeg" onclick="abrirModal(this, 0)">
+        <img src="./fotos/foto2.jpg.jpeg" onclick="abrirModal(this, 1)">
+        <img src="./fotos/foto3.jpg.jpeg" onclick="abrirModal(this, 2)">
+        <img src="./fotos/foto4.jpg.jpeg" onclick="abrirModal(this, 3)">
+        <img src="./fotos/foto5.jpg.jpeg" onclick="abrirModal(this, 4)">
+        <img src="./fotos/foto6.jpg.jpeg" onclick="abrirModal(this, 5)">
+        <img src="./fotos/foto7.jpg.jpeg" onclick="abrirModal(this, 6)">
+        <img src="./fotos/foto8.jpg.jpeg" onclick="abrirModal(this, 7)">
+        <img src="./fotos/foto9.jpg.jpeg" onclick="abrirModal(this, 8)">
     </div>
 </div>
 
-<!-- Música Perfume - Belo (YouTube incorporado) -->
+<!-- MODAL -->
+<div class="modal" id="modal">
+    <span class="close" onclick="fecharModal()">×</span>
+    <img id="modalImg">
+    <p id="modalTexto"></p>
+</div>
+
+<!-- Música -->
 <iframe id="musica"
 src="https://www.youtube.com/embed/3kYk8FJfKjM?autoplay=1&loop=1&playlist=3kYk8FJfKjM"
 allow="autoplay">
 </iframe>
 
 <script>
+const mensagens = [
+ "Rachei com essa mídia sua kkkkk",
+ "Muito linda amor, perfeição em pessoa",
+ "Nesse dia vc tava muito linda, queria ter trocado uma ideia cm vc",
+ "Gata pkrl slk… nesse dia tive certeza que te amava, não só pela beleza mas pela sua pessoa tbm",
+ "Simplesmente o melhor dia da minha vida, foi muito especial pra mim",
+ "Essa tá no fundo da nossa conversa, seu sorriso é muito lindo",
+ "Minha foto favorita, seus olhos lindos, sorriso maravilhoso, de coque fica mais linda ainda",
+ "Acho que repeti a foto, só pra confirmar que vc tava muito gata nesse dia",
+ "Pobre é foda, vai nas loja tira a mídia e não leva nada kkkkk"
+];
+
 function mostrarFotos() {
-    const galeria = document.getElementById("galeria");
-    if (!galeria.classList.contains("show")) {
-        galeria.style.display = "grid"; // garante que grid fique ativo
-        setTimeout(() => galeria.classList.add("show"), 10); // animação fade-in
-    } else {
-        galeria.classList.remove("show");
-        setTimeout(() => galeria.style.display = "none", 600); // espera animação sumir
-    }
+    const g = document.getElementById("galeria");
+    g.style.display = "grid";
+    setTimeout(() => g.classList.add("show"), 10);
+}
+
+function abrirModal(img, index) {
+    document.getElementById("modal").style.display = "flex";
+    document.getElementById("modalImg").src = img.src;
+    document.getElementById("modalTexto").innerText = mensagens[index];
+}
+
+function fecharModal() {
+    document.getElementById("modal").style.display = "none";
 }
 
 function tocarMusica() {
-    const musica = document.getElementById("musica");
-    musica.style.display = "block";
+    document.getElementById("musica").style.display = "block";
 }
 </script>
 
