@@ -5,16 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Para a Sophia ❤️</title>
 
-<!--
-Sophia,
-se você estiver lendo isso algum dia:
-eu aprendi um pouco de HTML, CSS e JavaScript
-só pra fazer algo especial pra você.
-Nada aqui foi copiado.
-Foi feito com carinho.
-— Vini
--->
-
 <style>
 body {
     margin: 0;
@@ -33,7 +23,7 @@ body {
     border-radius: 25px;
     padding: 25px 20px;
     width: 90%;
-    max-width: 360px;
+    max-width: 420px;
     text-align: center;
     box-shadow: 0 15px 35px rgba(0,0,0,0.25);
     animation: fadeIn 1.5s ease;
@@ -64,26 +54,47 @@ button {
     cursor: pointer;
     margin: 10px 0;
     width: 100%;
-    transition: transform 0.2s;
+    transition: transform 0.2s, background 0.3s;
 }
 
 button:hover {
     transform: scale(1.05);
+    background: #ffe5e8;
 }
 
 .gallery {
     display: none;
-    margin-top: 15px;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 12px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.gallery.show {
+    display: grid;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .gallery img {
     width: 100%;
-    border-radius: 18px;
-    margin-bottom: 12px;
+    border-radius: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
 iframe {
     display: none;
+    width: 0;
+    height: 0;
 }
 
 @keyframes pulse {
@@ -116,29 +127,43 @@ iframe {
     <button onclick="tocarMusica()">Aperta aqui com carinho 🎶</button>
 
     <div class="gallery" id="galeria">
-        <img src="fotos/foto1.jpg">
-        <img src="fotos/foto2.jpg">
-        <img src="fotos/foto3.jpg">
-        <img src="fotos/foto4.jpg">
-        <img src="fotos/foto5.jpg">
+        <img src="fotos/foto1.jpg" alt="Foto 1">
+        <img src="fotos/foto2.jpg" alt="Foto 2">
+        <img src="fotos/foto3.jpg" alt="Foto 3">
+        <img src="fotos/foto4.jpg" alt="Foto 4">
+        <img src="fotos/foto5.jpg" alt="Foto 5">
+        <img src="fotos/foto6.jpg" alt="Foto 6">
+        <img src="fotos/foto7.jpg" alt="Foto 7">
+        <img src="fotos/foto8.jpg" alt="Foto 8">
+        <img src="fotos/foto9.jpg" alt="Foto 9">
     </div>
 </div>
 
 <!-- Música Perfume - Belo (YouTube incorporado) -->
 <iframe id="musica"
-src="https://www.youtube.com/embed/3kYk8FJfKjM?autoplay=1"
+src="https://www.youtube.com/embed/3kYk8FJfKjM?autoplay=1&loop=1&playlist=3kYk8FJfKjM"
 allow="autoplay">
 </iframe>
 
 <script>
 function mostrarFotos() {
-    document.getElementById("galeria").style.display = "block";
+    const galeria = document.getElementById("galeria");
+    if (!galeria.classList.contains("show")) {
+        galeria.classList.add("show");
+    } else {
+        galeria.classList.remove("show");
+        setTimeout(() => galeria.style.display = "none", 600); // espera animação sumir
+        galeria.style.display = "grid"; // mantém display grid durante a animação
+    }
+    galeria.style.display = "grid";
 }
 
 function tocarMusica() {
-    document.getElementById("musica").style.display = "block";
+    const musica = document.getElementById("musica");
+    musica.style.display = "block";
 }
 </script>
 
 </body>
 </html>
+
