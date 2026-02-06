@@ -57,7 +57,6 @@ button {
 .gallery {
     display: none;
     margin-top: 20px;
-    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 12px;
     opacity: 0;
@@ -66,6 +65,7 @@ button {
 }
 
 .gallery.show {
+    display: grid;
     opacity: 1;
     transform: translateY(0);
 }
@@ -81,7 +81,6 @@ button {
     transform: scale(1.05);
 }
 
-/* MODAL */
 .modal {
     display: none;
     position: fixed;
@@ -112,12 +111,6 @@ button {
     right: 25px;
     font-size: 2em;
     cursor: pointer;
-}
-
-iframe {
-    display: none;
-    width: 0;
-    height: 0;
 }
 
 @keyframes pulse {
@@ -159,18 +152,15 @@ iframe {
     </div>
 </div>
 
-<!-- MODAL -->
 <div class="modal" id="modal">
     <span class="close" onclick="fecharModal()">×</span>
     <img id="modalImg">
     <p id="modalTexto"></p>
 </div>
 
-<!-- Música -->
-<iframe id="musica"
-src="https://www.youtube.com/embed/3kYk8FJfKjM?autoplay=1&loop=1&playlist=3kYk8FJfKjM"
-allow="autoplay">
-</iframe>
+<audio id="musica" loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 const mensagens = [
@@ -202,9 +192,12 @@ function fecharModal() {
 }
 
 function tocarMusica() {
-    document.getElementById("musica").style.display = "block";
+    const audio = document.getElementById("musica");
+    audio.volume = 0.7;
+    audio.play();
 }
 </script>
 
 </body>
 </html>
+
