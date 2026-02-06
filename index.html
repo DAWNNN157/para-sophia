@@ -120,22 +120,22 @@ iframe {
         Eu fiz esse site pensando em você,
         em cada detalhe, mesmo sem saber tudo.
         Porque quando é pra você,
-        eu sempre tento um pouco mais.
+        eu me dedico cada dia mais.
     </p>
 
     <button onclick="mostrarFotos()">Ver você 💖</button>
     <button onclick="tocarMusica()">Aperta aqui com carinho 🎶</button>
 
     <div class="gallery" id="galeria">
-        <img src="fotos/foto1.jpg" alt="Foto 1">
-        <img src="fotos/foto2.jpg" alt="Foto 2">
-        <img src="fotos/foto3.jpg" alt="Foto 3">
-        <img src="fotos/foto4.jpg" alt="Foto 4">
-        <img src="fotos/foto5.jpg" alt="Foto 5">
-        <img src="fotos/foto6.jpg" alt="Foto 6">
-        <img src="fotos/foto7.jpg" alt="Foto 7">
-        <img src="fotos/foto8.jpg" alt="Foto 8">
-        <img src="fotos/foto9.jpg" alt="Foto 9">
+        <img src="./fotos/foto1.jpg" alt="Foto 1">
+        <img src="./fotos/foto2.jpg" alt="Foto 2">
+        <img src="./fotos/foto3.jpg" alt="Foto 3">
+        <img src="./fotos/foto4.jpg" alt="Foto 4">
+        <img src="./fotos/foto5.jpg" alt="Foto 5">
+        <img src="./fotos/foto6.jpg" alt="Foto 6">
+        <img src="./fotos/foto7.jpg" alt="Foto 7">
+        <img src="./fotos/foto8.jpg" alt="Foto 8">
+        <img src="./fotos/foto9.jpg" alt="Foto 9">
     </div>
 </div>
 
@@ -149,13 +149,12 @@ allow="autoplay">
 function mostrarFotos() {
     const galeria = document.getElementById("galeria");
     if (!galeria.classList.contains("show")) {
-        galeria.classList.add("show");
+        galeria.style.display = "grid"; // garante que grid fique ativo
+        setTimeout(() => galeria.classList.add("show"), 10); // animação fade-in
     } else {
         galeria.classList.remove("show");
         setTimeout(() => galeria.style.display = "none", 600); // espera animação sumir
-        galeria.style.display = "grid"; // mantém display grid durante a animação
     }
-    galeria.style.display = "grid";
 }
 
 function tocarMusica() {
@@ -166,4 +165,3 @@ function tocarMusica() {
 
 </body>
 </html>
-
