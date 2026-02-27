@@ -9,32 +9,30 @@
 body {
     margin: 0;
     min-height: 100vh;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    background: radial-gradient(circle at top, #0f2027, #05070a);
     font-family: Arial, sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
+    color: #f2f2f2;
+    overflow: hidden;
 }
 
 .container {
-    background: rgba(255,255,255,0.18);
-    backdrop-filter: blur(10px);
+    background: rgba(20, 30, 48, 0.78);
+    backdrop-filter: blur(12px);
     border-radius: 25px;
     padding: 25px 20px;
     width: 90%;
     max-width: 420px;
     text-align: center;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
-    animation: fadeIn 1.5s ease;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    z-index: 2;
+    animation: fadeIn 1.2s ease;
 }
 
-h1 { font-size: 1.7em; }
-
-.heart {
-    font-size: 4em;
-    animation: pulse 1.3s infinite;
-    margin: 15px 0;
+h1 {
+    font-size: 1.6em;
 }
 
 p {
@@ -43,82 +41,63 @@ p {
 }
 
 button {
-    background: #fff;
-    color: #ff4b5c;
+    background: #ff6fae;
+    color: #fff;
     border: none;
     padding: 14px 22px;
     font-size: 1em;
     border-radius: 25px;
     cursor: pointer;
-    margin: 10px 0;
+    margin-top: 15px;
     width: 100%;
 }
 
-.gallery {
+button:hover {
+    opacity: 0.9;
+}
+
+.foto-box {
     display: none;
-    margin-top: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 12px;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: 0.6s;
-}
-
-.gallery.show {
-    display: grid;
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.gallery img {
-    width: 100%;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.gallery img:hover {
-    transform: scale(1.05);
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    z-index: 999;
-    padding: 20px;
+    gap: 15px;
+    animation: fadeIn 0.8s ease;
 }
 
-.modal img {
-    max-width: 90%;
-    max-height: 70%;
+.foto-box img {
+    width: 100%;
     border-radius: 20px;
 }
 
-.modal p {
-    margin-top: 15px;
-    font-size: 1.1em;
-    text-align: center;
+.final {
+    border: 2px solid rgba(255,105,180,0.5);
+    padding: 15px;
+    border-radius: 20px;
 }
 
-.close {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-    font-size: 2em;
-    cursor: pointer;
+.heart-float {
+    position: fixed;
+    bottom: -20px;
+    font-size: 20px;
+    color: rgba(255, 105, 180, 0.4);
+    animation: floatUp linear forwards;
+    pointer-events: none;
+    z-index: 1;
 }
 
-@keyframes pulse {
-    50% { transform: scale(1.15); }
+@keyframes floatUp {
+    from {
+        transform: translateY(0) scale(0.8);
+        opacity: 0;
+    }
+    10% { opacity: 1; }
+    to {
+        transform: translateY(-110vh) scale(1.3);
+        opacity: 0;
+    }
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
 }
 </style>
@@ -128,34 +107,18 @@ button {
 
 <div class="container">
     <h1>Oi, meu amor 💕</h1>
-    <div class="heart">❤️</div>
-
     <p>
-        Eu fiz esse site pensando em você,
-        em cada detalhe, porque quando é pra você,
-        eu me dedico de verdade.
+        Fiz isso com carinho, sem pressa.<br>
+        Agora vem comigo…
     </p>
 
-    <button onclick="mostrarFotos()">Ver você 💖</button>
-    <button onclick="tocarMusica()">Aperta aqui com carinho 🎶</button>
+    <button id="startBtn" onclick="iniciar()">Começar 💖</button>
 
-    <div class="gallery" id="galeria">
-        <img src="./fotos/foto1.jpg.jpeg" onclick="abrirModal(this, 0)">
-        <img src="./fotos/foto2.jpg.jpeg" onclick="abrirModal(this, 1)">
-        <img src="./fotos/foto3.jpg.jpeg" onclick="abrirModal(this, 2)">
-        <img src="./fotos/foto4.jpg.jpeg" onclick="abrirModal(this, 3)">
-        <img src="./fotos/foto5.jpg.jpeg" onclick="abrirModal(this, 4)">
-        <img src="./fotos/foto6.jpg.jpeg" onclick="abrirModal(this, 5)">
-        <img src="./fotos/foto7.jpg.jpeg" onclick="abrirModal(this, 6)">
-        <img src="./fotos/foto8.jpg.jpeg" onclick="abrirModal(this, 7)">
-        <img src="./fotos/foto9.jpg.jpeg" onclick="abrirModal(this, 8)">
+    <div class="foto-box" id="fotoBox">
+        <img id="foto">
+        <p id="texto"></p>
+        <button id="nextBtn" onclick="proxima()">continua…</button>
     </div>
-</div>
-
-<div class="modal" id="modal">
-    <span class="close" onclick="fecharModal()">×</span>
-    <img id="modalImg">
-    <p id="modalTexto"></p>
 </div>
 
 <audio id="musica" loop>
@@ -163,7 +126,19 @@ button {
 </audio>
 
 <script>
-const mensagens = [
+const fotos = [
+ "./fotos/foto1.jpg.jpeg",
+ "./fotos/foto2.jpg.jpeg",
+ "./fotos/foto3.jpg.jpeg",
+ "./fotos/foto4.jpg.jpeg",
+ "./fotos/foto5.jpg.jpeg",
+ "./fotos/foto6.jpg.jpeg",
+ "./fotos/foto7.jpg.jpeg",
+ "./fotos/foto8.jpg.jpeg",
+ "./fotos/foto9.jpg.jpeg"
+];
+
+const textos = [
  "Rachei com essa mídia sua kkkkk",
  "Muito linda amor, perfeição em pessoa",
  "Nesse dia vc tava muito linda, queria ter trocado uma ideia cm vc",
@@ -172,32 +147,60 @@ const mensagens = [
  "Essa tá no fundo da nossa conversa, seu sorriso é muito lindo",
  "Minha foto favorita, seus olhos lindos, sorriso maravilhoso, de coque fica mais linda ainda",
  "Acho que repeti a foto, só pra confirmar que vc tava muito gata nesse dia",
- "Pobre é foda, vai nas loja tira a mídia e não leva nada kkkkk"
+ "Depois de tudo isso… ainda assim, nenhuma foto chega perto do que você é."
 ];
 
-function mostrarFotos() {
-    const g = document.getElementById("galeria");
-    g.style.display = "grid";
-    setTimeout(() => g.classList.add("show"), 10);
+let index = 0;
+let musicaIniciada = false;
+
+function iniciar() {
+    document.getElementById("startBtn").style.display = "none";
+    document.getElementById("fotoBox").style.display = "flex";
+    mostrarFoto();
+
+    if (!musicaIniciada) {
+        const audio = document.getElementById("musica");
+        audio.volume = 0.6;
+        audio.play();
+        musicaIniciada = true;
+    }
 }
 
-function abrirModal(img, index) {
-    document.getElementById("modal").style.display = "flex";
-    document.getElementById("modalImg").src = img.src;
-    document.getElementById("modalTexto").innerText = mensagens[index];
+function mostrarFoto() {
+    const img = document.getElementById("foto");
+    const texto = document.getElementById("texto");
+    const btn = document.getElementById("nextBtn");
+
+    img.src = fotos[index];
+    texto.innerText = textos[index];
+
+    if (index === fotos.length - 1) {
+        btn.style.display = "none";
+        document.getElementById("fotoBox").classList.add("final");
+    }
 }
 
-function fecharModal() {
-    document.getElementById("modal").style.display = "none";
+function proxima() {
+    index++;
+    mostrarFoto();
 }
 
-function tocarMusica() {
-    const audio = document.getElementById("musica");
-    audio.volume = 0.7;
-    audio.play();
+function criarCoracao() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart-float");
+    heart.innerHTML = "💗";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = 6 + Math.random() * 4 + "s";
+    heart.style.fontSize = 14 + Math.random() * 20 + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 10000);
 }
+
+setInterval(criarCoracao, 800);
 </script>
 
 </body>
 </html>
-
