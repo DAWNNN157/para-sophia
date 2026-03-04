@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para a Sophia ❤️</title>
+<title>Para Nós ❤️</title>
 
 <style>
 body {
@@ -14,7 +14,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #f2f2f2;
+    color: #eaeaea;
     overflow: hidden;
 }
 
@@ -28,11 +28,12 @@ body {
     text-align: center;
     box-shadow: 0 20px 40px rgba(0,0,0,0.6);
     z-index: 2;
-    animation: fadeIn 1.2s ease;
+    animation: fadeIn 1s ease;
 }
 
 h1 {
-    font-size: 1.6em;
+    font-size: 1.5em;
+    margin-bottom: 10px;
 }
 
 p {
@@ -41,7 +42,7 @@ p {
 }
 
 button {
-    background: #ff6fae;
+    background: #7b4cff;
     color: #fff;
     border: none;
     padding: 14px 22px;
@@ -56,11 +57,23 @@ button:hover {
     opacity: 0.9;
 }
 
+.foto-area {
+    position: relative;
+    overflow: hidden;
+}
+
 .foto-box {
     display: none;
     flex-direction: column;
     gap: 15px;
-    animation: fadeIn 0.8s ease;
+}
+
+.slide {
+    animation: slideIn 0.6s ease forwards;
+}
+
+.slide-out {
+    animation: slideOut 0.6s ease forwards;
 }
 
 .foto-box img {
@@ -69,7 +82,7 @@ button:hover {
 }
 
 .final {
-    border: 2px solid rgba(255,105,180,0.5);
+    border: 2px solid rgba(255,105,180,0.45);
     padding: 15px;
     border-radius: 20px;
 }
@@ -77,7 +90,7 @@ button:hover {
 .heart-float {
     position: fixed;
     bottom: -20px;
-    font-size: 20px;
+    font-size: 18px;
     color: rgba(255, 105, 180, 0.4);
     animation: floatUp linear forwards;
     pointer-events: none;
@@ -85,15 +98,19 @@ button:hover {
 }
 
 @keyframes floatUp {
-    from {
-        transform: translateY(0) scale(0.8);
-        opacity: 0;
-    }
+    from { transform: translateY(0) scale(0.8); opacity: 0; }
     10% { opacity: 1; }
-    to {
-        transform: translateY(-110vh) scale(1.3);
-        opacity: 0;
-    }
+    to { transform: translateY(-110vh) scale(1.3); opacity: 0; }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(-100%); opacity: 0; }
 }
 
 @keyframes fadeIn {
@@ -106,18 +123,20 @@ button:hover {
 <body>
 
 <div class="container">
-    <h1>Oi, meu amor 💕</h1>
+    <h1>Oi, amor.</h1>
     <p>
-        Fiz isso com carinho, sem pressa.<br>
-        Agora vem comigo…
+        Dois meses ao seu lado já dizem muita coisa.<br>
+        Quero te mostrar um pouco disso.
     </p>
 
-    <button id="startBtn" onclick="iniciar()">Começar 💖</button>
+    <button id="startBtn" onclick="iniciar()">Começar 💜</button>
 
-    <div class="foto-box" id="fotoBox">
-        <img id="foto">
-        <p id="texto"></p>
-        <button id="nextBtn" onclick="proxima()">continua…</button>
+    <div class="foto-area">
+        <div class="foto-box" id="fotoBox">
+            <img id="foto">
+            <p id="texto"></p>
+            <button id="nextBtn" onclick="proxima()">continua…</button>
+        </div>
     </div>
 </div>
 
@@ -131,23 +150,37 @@ const fotos = [
  "./fotos/foto2.jpg.jpeg",
  "./fotos/foto3.jpg.jpeg",
  "./fotos/foto4.jpg.jpeg",
- "./fotos/foto5.jpg.jpeg",
- "./fotos/foto6.jpg.jpeg",
- "./fotos/foto7.jpg.jpeg",
- "./fotos/foto8.jpg.jpeg",
- "./fotos/foto9.jpg.jpeg"
+ "./fotos/foto5.jpg.jpeg"
 ];
 
 const textos = [
- "Rachei com essa mídia sua kkkkk",
- "Muito linda amor, perfeição em pessoa",
- "Nesse dia vc tava muito linda, queria ter trocado uma ideia cm vc",
- "Gata pkrl slk… nesse dia tive certeza que te amava, não só pela beleza mas pela sua pessoa tbm",
- "Simplesmente o melhor dia da minha vida, foi muito especial pra mim",
- "Essa tá no fundo da nossa conversa, seu sorriso é muito lindo",
- "Minha foto favorita, seus olhos lindos, sorriso maravilhoso, de coque fica mais linda ainda",
- "Acho que repeti a foto, só pra confirmar que vc tava muito gata nesse dia",
- "Depois de tudo isso… ainda assim, nenhuma foto chega perto do que você é."
+ "Aqui foi onde tudo começou de verdade, e onde eu tive certeza de que era você.",
+ "Com você, cada momento se torna uma alegria.",
+ "Foi um dia muito especial, e estar ao seu lado ali fez tudo fazer ainda mais sentido.",
+ "Na virada do ano, eu percebi que o que eu mais queria era continuar ao seu lado.",
+ `Amor,
+sei que dois meses podem parecer pouco,
+mas pra mim esses dois meses pareceram anos.
+
+Ter você ao meu lado é o maior presente
+que Deus poderia ter me dado.
+
+Nunca imaginei que um dia encontraria
+alguém tão especial quanto você.
+Amo seu sorriso, seus olhos,
+seu nariz, seu cabelo…
+amo cada detalhe seu.
+
+Cada momento com você
+se torna uma lembrança impagável.
+
+Obrigado por sempre estar ao meu lado,
+mesmo quando você não apoia
+minhas ideias malucas.
+
+Quero que saiba que pode contar comigo pra tudo.
+
+EU TE AMO ❤️`
 ];
 
 let index = 0;
@@ -156,7 +189,7 @@ let musicaIniciada = false;
 function iniciar() {
     document.getElementById("startBtn").style.display = "none";
     document.getElementById("fotoBox").style.display = "flex";
-    mostrarFoto();
+    mostrarFoto(true);
 
     if (!musicaIniciada) {
         const audio = document.getElementById("musica");
@@ -166,17 +199,33 @@ function iniciar() {
     }
 }
 
-function mostrarFoto() {
+function mostrarFoto(primeira = false) {
+    const box = document.getElementById("fotoBox");
     const img = document.getElementById("foto");
     const texto = document.getElementById("texto");
     const btn = document.getElementById("nextBtn");
 
-    img.src = fotos[index];
-    texto.innerText = textos[index];
+    if (!primeira) {
+        box.classList.add("slide-out");
+        setTimeout(() => {
+            atualizarConteudo();
+        }, 600);
+    } else {
+        atualizarConteudo();
+    }
 
-    if (index === fotos.length - 1) {
-        btn.style.display = "none";
-        document.getElementById("fotoBox").classList.add("final");
+    function atualizarConteudo() {
+        box.classList.remove("slide-out");
+        img.src = fotos[index];
+        texto.innerText = textos[index];
+        box.classList.add("slide");
+
+        setTimeout(() => box.classList.remove("slide"), 600);
+
+        if (index === fotos.length - 1) {
+            btn.style.display = "none";
+            box.classList.add("final");
+        }
     }
 }
 
@@ -189,17 +238,13 @@ function criarCoracao() {
     const heart = document.createElement("div");
     heart.classList.add("heart-float");
     heart.innerHTML = "💗";
-
     heart.style.left = Math.random() * 100 + "vw";
     heart.style.animationDuration = 6 + Math.random() * 4 + "s";
-    heart.style.fontSize = 14 + Math.random() * 20 + "px";
-
     document.body.appendChild(heart);
-
     setTimeout(() => heart.remove(), 10000);
 }
 
-setInterval(criarCoracao, 800);
+setInterval(criarCoracao, 900);
 </script>
 
 </body>
