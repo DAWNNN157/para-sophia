@@ -25,6 +25,8 @@ body {
     padding: 25px 20px;
     width: 90%;
     max-width: 420px;
+    max-height: 90vh;
+    overflow-y: auto;
     text-align: center;
     box-shadow: 0 20px 40px rgba(0,0,0,0.6);
     z-index: 2;
@@ -39,14 +41,15 @@ h1 {
 p {
     font-size: 1.05em;
     line-height: 1.6;
+    white-space: pre-line;
 }
 
 button {
     background: #7b4cff;
     color: #fff;
     border: none;
-    padding: 14px 22px;
-    font-size: 1em;
+    padding: 12px 18px;
+    font-size: 0.95em;
     border-radius: 25px;
     cursor: pointer;
     margin-top: 15px;
@@ -79,6 +82,10 @@ button:hover {
 .foto-box img {
     width: 100%;
     border-radius: 20px;
+}
+
+#texto {
+    word-wrap: break-word;
 }
 
 .final {
@@ -125,7 +132,7 @@ button:hover {
 <div class="container">
     <h1>Oi, amor.</h1>
     <p>
-        Dois meses ao seu lado já dizem muita coisa.<br>
+        Dois meses ao seu lado já dizem muita coisa.
         Quero te mostrar um pouco disso.
     </p>
 
@@ -135,7 +142,7 @@ button:hover {
         <div class="foto-box" id="fotoBox">
             <img id="foto">
             <p id="texto"></p>
-            <button id="nextBtn" onclick="proxima()">continua…</button>
+            <button id="nextBtn" onclick="proxima()">continuar</button>
         </div>
     </div>
 </div>
@@ -154,11 +161,11 @@ const fotos = [
 ];
 
 const textos = [
- "Aqui foi onde tudo começou de verdade, e onde eu tive certeza de que era você.",
- "Com você, cada momento se torna uma alegria.",
- "Foi um dia muito especial, e estar ao seu lado ali fez tudo fazer ainda mais sentido.",
- "Na virada do ano, eu percebi que o que eu mais queria era continuar ao seu lado.",
- `Amor,
+"Aqui foi onde tudo começou de verdade, e onde eu tive certeza de que era você.",
+"Com você, cada momento se torna uma alegria.",
+"Foi um dia muito especial, e estar ao seu lado ali fez tudo fazer ainda mais sentido.",
+"Na virada do ano, eu percebi que o que eu mais queria era continuar ao seu lado.",
+`Amor,
 sei que dois meses podem parecer pouco,
 mas pra mim esses dois meses pareceram anos.
 
